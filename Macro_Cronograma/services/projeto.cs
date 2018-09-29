@@ -5,10 +5,10 @@ using System.Linq;
 
 namespace Macro_Cronograma.services
 {
-    class projeto
+    public class projeto
     {
-        public tb_projeto projetoModel { get; set; }
-        public projetoDAO projetoDAO { get; set; }
+        tb_projeto projetoModel = new tb_projeto();
+        projetoDAO projetoDAO = new projetoDAO();
 
         public void gravarProjeto(tb_projeto projeto)
         {
@@ -25,7 +25,7 @@ namespace Macro_Cronograma.services
         public tb_projeto buscarProjeto(int idProjeto)
         {
             var projetoSelecionado = projetoDAO.Listar()
-                .Where(a => a.id_projeto.Equals(idProjeto)).FirstOrDefault();
+                .Where(a => a.id_projeto == idProjeto).FirstOrDefault();
 
             return projetoSelecionado;
         }

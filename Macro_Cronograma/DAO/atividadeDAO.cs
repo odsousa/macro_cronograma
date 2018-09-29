@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Macro_Cronograma.DAO
 {
-    class atividadeDAO
+    public class atividadeDAO
     {
         public void Gravar(tb_atividade atividade)
         {

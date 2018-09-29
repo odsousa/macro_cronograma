@@ -13,7 +13,7 @@ namespace Macro_Cronograma.models
         public int id_projeto { get; set; }
         public string des_projeto { get; set; }
         public DateTime dt_inicio { get; set; }
-        public DateTime? dt_fim { get; set; }
+        public DateTime dt_fim { get; set; }
 
         public ICollection<tb_atividade> tb_atividade { get; set; }
     }

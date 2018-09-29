@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Macro_Cronograma_Core", "Macro_Cronograma_Core\Macro_Cronograma_Core.csproj", "{CE31B188-96FF-4A60-927D-00CD81DA912C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Macro_Cronograma_Core", "Macro_Cronograma_Core\Macro_Cronograma_Core.csproj", "{CE31B188-96FF-4A60-927D-00CD81DA912C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Macro_Cronograma", "Macro_Cronograma\Macro_Cronograma.csproj", "{4E3170FE-FDA7-4DDE-B287-2C2F0EED591B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Macro_Cronograma", "Macro_Cronograma\Macro_Cronograma.csproj", "{4E3170FE-FDA7-4DDE-B287-2C2F0EED591B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Macro_Cronograma.services
 {
-    class atividade
+    public class atividade
     {
         public tb_atividade atividadeModel { get; set; }
         public atividadeDAO atividadeDAO { get; set; }

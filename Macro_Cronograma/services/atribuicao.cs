@@ -5,7 +5,7 @@ using Macro_Cronograma.models;
 
 namespace Macro_Cronograma.services
 {
-    class atribuicao
+    public class atribuicao
     {
         public tb_atribuicao atribuicaoModel { get; set; }
         public atribuicaoDAO atribuicaoDAO { get; set; }

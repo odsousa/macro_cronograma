@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Macro_Cronograma.DAO
 {
-    class atribuicaoDAO
+    public class atribuicaoDAO
     {
         public void Gravar(tb_atribuicao atribuicao)
         {

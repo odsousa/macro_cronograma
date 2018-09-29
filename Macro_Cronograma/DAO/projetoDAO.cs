@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Macro_Cronograma.DAO
 {
-    class projetoDAO 
+    public class projetoDAO 
     {
         public void Gravar(tb_projeto projeto)
         {
@@ -38,7 +38,7 @@ namespace Macro_Cronograma.DAO
         {
             using(var db = new macro_cronogramaContext())
             {
-               var queryProjetos = (from p in db.tb_projeto
+               List<tb_projeto> queryProjetos = (from p in db.tb_projeto
                                      select new tb_projeto()
                                      {
                                          id_projeto = p.id_projeto,

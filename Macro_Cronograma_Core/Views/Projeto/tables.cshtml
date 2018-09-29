@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Macro_Cronograma.models.tb_projeto>
+
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header">Status de Projetos</h3>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                   Projetos Ativos 
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <thead>
+                            <tr>
+                                <th>Projeto</th>
+                                <th>Data inicio</th>
+                                <th>Data Final</th>
+                                <th>Progresso</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr class="projeto-@item.id_projeto">
+                                <td>@item.des_projeto</td>
+                                <td>@item.dt_inicio.ToShortDateString()</td>
+                                <td>@item.dt_fim.ToShortDateString()</td>
+                                <td><progress value="@DateTime.Now.DayOfYear" max="@item.dt_fim.DayOfYear"></progress></td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+</div>
+<!-- /#page-wrapper -->
+
+
+<!-- Page-Level Demo Scripts - Tables - Use for reference -->
+<script>
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+            responsive: true
+        });
+    });
+</script>
