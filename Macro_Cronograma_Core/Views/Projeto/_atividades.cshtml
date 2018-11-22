@@ -1,0 +1,158 @@
+﻿
+<section class="content-header">
+    <h1>
+        <span class="nome-projeto" id="project-title"></span>
+    </h1>
+</section>
+
+<section class="content-body">
+
+    <div class="row hidden-print" id="box-controles-atividades" style="margin-bottom: 20px;">
+
+        <div class="col-lg-6" id="box-controles-atividades">
+            <button type="button" class="btn btn-toolbar" id="btn-reduzir-escala">
+                <span class="glyphicon glyphicon-zoom-in"></span>
+            </button>
+            <button type="button" class="btn btn-toolbar" id="btn-aumentar-escala">
+                <span class="glyphicon glyphicon-zoom-out"></span>
+            </button>
+            <button type="button" class="btn btn-success" id="cadastrar-atividades" data-toggle="modal" data-target="#modalAtividades">
+                Inserir atividade
+            </button>
+            <button type="button" class="btn btn-danger" id="excluir-atividades">
+                Excluir atividade
+            </button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div id="timeline-tooltip"></div>
+            <div id="alert-atividades"></div>
+        </div>
+    </div>
+
+</section>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<div id="chart_wrapper">
+    <div id="chart_div"></div>
+</div>
+    <script type="text/javascript">
+
+        google.charts.load('current', {
+            packages: ['corechart', 'bar']
+        });
+        google.charts.setOnLoadCallback(LoadData);
+
+        function LoadData() {
+            var projeto = @ViewBag.ProjetoSelecionado.id_projeto;
+
+            $.ajax({
+                url: '@Url.Action("PopularGraficos","Projeto")',
+                dataType: "json",
+                data: { 'idProjeto': projeto},
+                type: "GET",
+                error: function(xhr, status, error) {
+                    var err = eval("(" + xhr.responseText + ")");
+                    toastr.error(err.message);
+                },
+                success: function(data) {
+                    renderizar_grafico(data);
+                    return false;
+                }
+            });
+            return false;
+        }
+
+        function renderizar_grafico(atividades) {
+
+            var colors = [];
+
+            var format = 'dd/MM'
+
+            google.charts.load('visualization', '1', { 'packages': ['timeline'] });
+            google.charts.setOnLoadCallback(drawChart);
+            function drawChart() {
+                var container = document.getElementById('timeline-tooltip');
+                var chart = new google.visualization.Timeline(container);
+                var dataTable = new google.visualization.DataTable();
+                var data_inicial;
+                var data_final;
+
+
+                dataTable.addColumn({ type: 'string', id: 'atividade' });
+                dataTable.addColumn({ type: 'string', id: 'label' });
+                dataTable.addColumn({ type: 'date', id: 'Start' });
+                dataTable.addColumn({ type: 'date', id: 'End' });
+
+
+                $.each(atividades, function (i, atividade) {
+
+                    dataTable.addRow(
+                        [
+                            atividade.des_atividade,
+                            convertDate(atividade.dt_inicio) + " a " + convertDate(atividade.dt_fim),
+                            new Date(atividade.dt_inicio),
+                            new Date(atividade.dt_fim)
+                        ]
+                    );
+                    colors.push(atividade.cod_cor_grafico);
+
+                    if (i == 0) {
+                        data_inicial = new Date(atividade.dt_inicio);
+                    }
+                    data_final = new Date(atividade.dt_fim);
+
+                })
+
+
+                //if (zoom) {
+
+                //    format = 'MM/yy'
+                //    data_inicial = new Date
+                //        (
+                //            data_inicial.getFullYear(),
+                //            data_inicial.getMonth() - 3,
+                //            data_inicial.getDate()
+                //        );
+
+                //    data_final = new Date
+                //        (
+                //            data_final.getFullYear(),
+                //            data_final.getMonth() + 3,
+                //            data_final.getDate()
+                //        );
+                //}
+
+                var options = {
+                    colors: colors,
+                    allowHtml: true,
+                    showRowNumber: true,
+                    height: 350,
+                    timeline: {
+                        rowLabelStyle: { fontName: 'verdana', fontSize: 9 },
+                        barLabelStyle: { fontName: 'verdana', fontSize: 9, position: 'left' },
+                    },
+
+                    hAxis: {
+                        format: format,
+                        minValue: data_inicial,
+                        maxValue: data_final,
+                        gridlines: { count: 3 }
+                    }
+
+
+                };
+                chart.draw(dataTable, options);
+            }
+
+            function convertDate(inputFormat) {
+                function pad(s) { return (s < 10) ? '0' + s : s; }
+                var d = new Date(inputFormat);
+                return [pad(d.getDate()), pad(d.getMonth() + 1), d.getFullYear()].join('/');
+            }
+
+
+
+        }
+    </script>

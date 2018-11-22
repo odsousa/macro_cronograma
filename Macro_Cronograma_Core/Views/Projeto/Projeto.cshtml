@@ -1,8 +1,9 @@
-﻿
+﻿@model IEnumerable<Macro_Cronograma.models.tb_projeto>
+
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
-            <h3 class="page-header">@Model.des_projeto</h3>
+            <h3 class="page-header">@ViewBag.ProjetoSelecionado.des_projeto</h3>
         </div>
         <!-- /.col-lg-12 -->
     </div>
@@ -11,20 +12,26 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Exemplo
+                    Macro Cronograma
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
-                    <div class="flot-chart"> 
-                        <div class="flot-chart-content" id="flot-line-chart"></div>
+                    <div class="flot-chart">
+                        <div class="flot-chart-content" id="flot-line-chart">
+                            @Html.Partial("_atividades.cshtml")
+                            @Html.Partial("_inserirAtividade.cshtml")
+                            @Html.Partial("_inserirProjeto.cshtml")
+                        </div>
                     </div>
+                    <!-- /.panel-body -->
                 </div>
-                <!-- /.panel-body -->
+                <!-- /.panel -->
             </div>
-            <!-- /.panel -->
+            <!-- /.col-lg-12 -->
         </div>
-        <!-- /.col-lg-12 -->
+        <!-- /.row -->
     </div>
-    <!-- /.row -->
-</div>
-<!-- /#page-wrapper -->
+
+    <!-- /#page-wrapper -->
+
+

@@ -1,0 +1,106 @@
+﻿@*@model IEnumerable<Macro_Cronograma.models.tb_atividade>*@
+
+@*@Styles.Render("~/Content/ModalForms.css")*@
+
+<div class="modal fade" id="modalAtividades" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="ModalLabel">Incluir nova atividade</h3>
+                <div class="button-close-modal">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="fechar-modal-atividade">
+                        <span aria-hidden="true"><i class="fa fa-close"></i></span>
+                    </button>
+                </div>
+            </div>
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#incluiratividade"><b>Incluir Atividades:</b></a>
+                        </h4>
+                    </div>
+                    <div id="incluiratividade" class="panel-collapse collapse in">
+                        <div class="form-wrap col-sm-12">
+                            @*@using (Ajax.BeginForm("cadastrarAtividade", "Home", new AjaxOptions
+                            { HttpMethod = "POST", UpdateTargetId = "mx-3", OnSuccess = "OnSuccess", OnFailure = "OnFailure" }, new { @id = "form-atividades", UpdateTargetId = "sucess-atividade" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true)
+                                @Html.HiddenFor(a => a.id_projeto)
+                                <div class="form-group">
+                                    @Html.ValidationMessageFor(a => a.des_atividade, null, new { @class = "error" })
+                                    @Html.LabelFor(a => a.des_atividade)
+                                    @Html.TextBoxFor(a => a.des_atividade, new { @id = "form34", @class = "form-control" })
+                                </div>
+                                <div class="checkbox">
+                                    @Html.ValidationMessageFor(a => a.flag_deadline, null, new { @class = "error" })
+                                    @Html.CheckBoxFor(a => a.flag_deadline, new { @class = "character-checkbox" })
+                                    @Html.LabelFor(a => a.flag_deadline)
+                                </div>
+                                <div class="form-group" style="height:70px;">
+                                    <div class="col-sm-6" style="padding-left:0;">
+                                        @Html.LabelFor(a => a.dt_inicio)
+                                        @Html.TextBoxFor(a => a.dt_inicio, new { @id = "input_des_projeto", @class = "form-control", @type = "date" })
+                                        @Html.ValidationMessageFor(a => a.dt_inicio, null, new { @class = "error" })
+                                    </div>
+                                    <div class="col-sm-6 input-data" style="padding-right:0;">
+                                        @Html.LabelFor(a => a.dt_fim)
+                                        @Html.TextBoxFor(a => a.dt_fim, new { @id = "input_des_projeto", @class = "form-control", @type = "date" })
+                                        @Html.ValidationMessageFor(a => a.dt_fim, null, new { @class = "error" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(a => a.cod_cor_grafico)
+                                    @Html.DropDownListFor(a => a.cod_cor_grafico, new SelectList(ViewBag.DadosAtribuicao), new { @class = "form-control" })
+                                </div>
+                                <input type="submit" id="btn-submit" class="btn btn-custom btn-lg btn-block" value="Enviar">
+                                <div id="result-atividade"></div>
+
+                            }*@
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1"><b>Configurações de Atividades:</b></a>
+                            </h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <ul style="list-style-type:none;">
+                                    <li><input type="checkbox" /><b>Exemplo 1</b></li>
+                                    <li><input type="checkbox" /><b>Exemplo 2</b></li>
+                                    <li><input type="checkbox" /><b>Exemplo 3</b></li>
+                                    <li><input type="checkbox" /><b>Exemplo 4</b></li>
+                                    <li><input type="checkbox" /><b>Exemplo 5</b></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    function OnSuccess(data) {
+        document.getElementById('form-atividades').reset();
+        document.getElementById('result-atividade').innerHTML = data.Mensagem;
+    }
+    function OnFailure(data) {
+        console.log('HTTP Status Code: ' + data.param1 + '  Error Message: ' + data.param2);
+    }
+
+    $("#fechar-modal-atividade").click(function () {
+        getAtividades($("#id_projeto").val());
+    });
+</script>
+
+
+

@@ -47,7 +47,8 @@ namespace Macro_Cronograma.DAO
                                          flag_deadline = a.flag_deadline,
                                          dt_inicio = a.dt_inicio,
                                          dt_fim = a.dt_fim,
-                                         cod_cor_grafico = a.cod_cor_grafico
+                                         cod_cor_grafico = a.cod_cor_grafico,
+                                         id_projeto = a.id_projeto
                                      }).ToList();
 
                 return queryAtividades;

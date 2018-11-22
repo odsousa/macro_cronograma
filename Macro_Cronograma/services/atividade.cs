@@ -7,14 +7,14 @@ namespace Macro_Cronograma.services
 {
     public class atividade
     {
-        public tb_atividade atividadeModel { get; set; }
-        public atividadeDAO atividadeDAO { get; set; }
+        tb_atividade atividadeModel = new tb_atividade();
+        atividadeDAO atividadeDAO = new atividadeDAO();
 
-        public tb_projeto projetoModel { get; set; }
-        public projetoDAO projetoDAO { get; set; }
+        tb_projeto projetoModel = new tb_projeto();
+        projetoDAO projetoDAO = new projetoDAO();
 
-        public tb_atribuicao atribuicaoModel { get; set; }
-        public atribuicaoDAO atribuicaoDAO { get; set; }
+        tb_atribuicao atribuicaoModel = new tb_atribuicao();
+        atribuicaoDAO atribuicaoDAO = new atribuicaoDAO();
 
 
         public void gravarAtividade(tb_atividade atividade)

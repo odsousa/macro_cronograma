@@ -1,0 +1,38 @@
+﻿@*@model IEnumerable<Macro_Cronograma.models.tb_projeto>*@
+
+@{
+    ViewBag.Title = "Incluir Novo Projetos";
+}
+
+@*@Styles.Render("~/Content/ModalForms.css")*@
+
+<div class="modal fade" id="modalProjeto" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="ModalLabel">Incluir novo projeto</h3>
+                <div class="button-close-modal">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fa fa-close"></i></span>
+                    </button>
+                </div>
+            </div>
+            <div class="form-wrap">
+                @*@using (Html.BeginForm("RegistrarProjeto", "Home", FormMethod.Post, new { @class = "form-signin" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    <div class="form-group">
+                        @Html.ValidationMessageFor(a => a.des_projeto, null, new { @class = "error" })
+                        @Html.Label("Nome do projeto:")
+                        @Html.TextBoxFor(a => a.des_projeto, new { @id = "input_des_projeto", @class = "form-control" })
+                    </div>
+                    <input type="submit" class="btn btn-custom btn-lg btn-block" value="Enviar" />
+                }*@
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
